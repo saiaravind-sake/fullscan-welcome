@@ -182,10 +182,10 @@ people.forEach((person, index) => {
 function generateMathQuestion() {
 
     const firstNumber =
-        Math.floor(Math.random() * 200) + 1;
+        Math.floor(Math.random() * 2000) + 1;
 
     const secondNumber =
-        Math.floor(Math.random() * 150) + 1;
+        Math.floor(Math.random() * 1500) + 1;
 
 
     const operators = ["+", "-"];
