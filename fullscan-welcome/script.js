@@ -99,17 +99,21 @@ let selectedCard = null;
 let correctAnswer = null;
 
 
-/* Create people cards */
+/* ==========================================
+   CREATE PEOPLE CARDS
+========================================== */
 
 people.forEach((person, index) => {
 
-    const card = document.createElement("div");
+    const card =
+        document.createElement("div");
 
-    card.className = "person-card";
+    card.className =
+        "person-card";
 
 
     /*
-        Special quote only for Vaishanvi
+       SPECIAL QUOTE FOR VAISHANVI
     */
 
     let personQuote;
@@ -171,49 +175,80 @@ people.forEach((person, index) => {
 
     card.addEventListener("click", () => {
 
-        if (card.classList.contains("flipped")) {
+        if (
+            card.classList.contains("flipped")
+        ) {
+
             return;
+
         }
 
-        selectedCard = card;
+
+        selectedCard =
+            card;
+
 
         generateMathQuestion();
 
-        modal.classList.add("active");
 
-        answerInput.value = "";
+        modal.classList.add(
+            "active"
+        );
 
-        attemptMessage.textContent = "";
+
+        answerInput.value =
+            "";
+
+
+        attemptMessage.textContent =
+            "";
+
 
         setTimeout(() => {
+
             answerInput.focus();
+
         }, 100);
 
     });
 
 
-    peopleContainer.appendChild(card);
+    peopleContainer.appendChild(
+        card
+    );
 
 });
 
 
-/* Generate simple addition/subtraction */
+/* ==========================================
+   GENERATE SIMPLE ADDITION / SUBTRACTION
+========================================== */
 
 function generateMathQuestion() {
 
     const firstNumber =
-        Math.floor(Math.random() * 2000) + 1;
+        Math.floor(
+            Math.random() * 2000
+        ) + 1;
+
 
     const secondNumber =
-        Math.floor(Math.random() * 1500) + 1;
+        Math.floor(
+            Math.random() * 1500
+        ) + 1;
 
 
-    const operators = ["+", "-"];
+    const operators = [
+        "+",
+        "-"
+    ];
+
 
     const operator =
         operators[
             Math.floor(
-                Math.random() * operators.length
+                Math.random() *
+                operators.length
             )
         ];
 
@@ -221,12 +256,13 @@ function generateMathQuestion() {
     let questionFirst =
         firstNumber;
 
+
     let questionSecond =
         secondNumber;
 
 
     /*
-        Keep subtraction answers positive.
+       Keep subtraction answers positive
     */
 
     if (
@@ -234,21 +270,31 @@ function generateMathQuestion() {
         questionSecond > questionFirst
     ) {
 
-        [questionFirst, questionSecond] =
-            [questionSecond, questionFirst];
+        [
+            questionFirst,
+            questionSecond
+        ] =
+        [
+            questionSecond,
+            questionFirst
+        ];
 
     }
 
 
-    if (operator === "+") {
+    if (
+        operator === "+"
+    ) {
 
         correctAnswer =
-            questionFirst + questionSecond;
+            questionFirst +
+            questionSecond;
 
     } else {
 
         correctAnswer =
-            questionFirst - questionSecond;
+            questionFirst -
+            questionSecond;
 
     }
 
@@ -259,30 +305,47 @@ function generateMathQuestion() {
 }
 
 
-/* Check answer */
+/* ==========================================
+   CHECK ANSWER
+========================================== */
 
 function checkAnswer() {
 
     const userAnswer =
-        Number(answerInput.value);
+        Number(
+            answerInput.value
+        );
 
 
-    if (answerInput.value.trim() === "") {
+    if (
+        answerInput.value.trim() === ""
+    ) {
 
         attemptMessage.textContent =
             "Please enter an answer 😊";
 
+
         attemptMessage.style.color =
             "#e39a42";
 
+
         return;
+
     }
 
 
-    if (userAnswer === correctAnswer) {
+    /* ======================================
+       CORRECT ANSWER
+    ====================================== */
+
+    if (
+        userAnswer ===
+        correctAnswer
+    ) {
 
         attemptMessage.textContent =
             "Correct! 🎉";
+
 
         attemptMessage.style.color =
             "#43a982";
@@ -290,26 +353,42 @@ function checkAnswer() {
 
         setTimeout(() => {
 
-            modal.classList.remove("active");
+            modal.classList.remove(
+                "active"
+            );
 
-            if (selectedCard) {
 
-                selectedCard.classList.add("flipped");
+            if (
+                selectedCard
+            ) {
+
+                selectedCard.classList.add(
+                    "flipped"
+                );
 
             }
+
 
             showSuccessToast();
 
         }, 600);
 
+    }
 
-    } else {
+
+    /* ======================================
+       WRONG ANSWER
+    ====================================== */
+
+    else {
 
         attemptMessage.textContent =
             "Lekalu kuda rava miku? 😂";
 
+
         attemptMessage.style.color =
             "#e46d6d";
+
 
         answerInput.select();
 
@@ -318,7 +397,9 @@ function checkAnswer() {
 }
 
 
-/* Button */
+/* ==========================================
+   CHECK BUTTON
+========================================== */
 
 submitAnswer.addEventListener(
     "click",
@@ -326,13 +407,17 @@ submitAnswer.addEventListener(
 );
 
 
-/* Enter key */
+/* ==========================================
+   ENTER KEY
+========================================== */
 
 answerInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             checkAnswer();
 
@@ -342,27 +427,37 @@ answerInput.addEventListener(
 );
 
 
-/* Close modal */
+/* ==========================================
+   CLOSE MODAL
+========================================== */
 
 closeModal.addEventListener(
     "click",
     function() {
 
-        modal.classList.remove("active");
+        modal.classList.remove(
+            "active"
+        );
 
     }
 );
 
 
-/* Close modal by clicking outside */
+/* ==========================================
+   CLOSE BY CLICKING OUTSIDE
+========================================== */
 
 modal.addEventListener(
     "click",
     function(event) {
 
-        if (event.target === modal) {
+        if (
+            event.target === modal
+        ) {
 
-            modal.classList.remove("active");
+            modal.classList.remove(
+                "active"
+            );
 
         }
 
@@ -370,16 +465,22 @@ modal.addEventListener(
 );
 
 
-/* Success toast */
+/* ==========================================
+   SUCCESS TOAST
+========================================== */
 
 function showSuccessToast() {
 
-    successToast.classList.add("show");
+    successToast.classList.add(
+        "show"
+    );
 
 
     setTimeout(() => {
 
-        successToast.classList.remove("show");
+        successToast.classList.remove(
+            "show"
+        );
 
     }, 3500);
 
