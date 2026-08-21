@@ -107,6 +107,26 @@ people.forEach((person, index) => {
 
     card.className = "person-card";
 
+
+    /*
+        Special quote only for Vaishanvi
+    */
+
+    let personQuote;
+
+    if (person === "Vaishanvi") {
+
+        personQuote =
+            "Why were you born beautiful, and why did you grow up even more beautiful? ❤️";
+
+    } else {
+
+        personQuote =
+            quotes[index % quotes.length];
+
+    }
+
+
     card.innerHTML = `
 
         <div class="card-inner">
@@ -135,7 +155,7 @@ people.forEach((person, index) => {
                 </div>
 
                 <div class="quote">
-                    "${quotes[index % quotes.length]}"
+                    "${personQuote}"
                 </div>
 
                 <div class="quote-name">
