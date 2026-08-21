@@ -105,31 +105,33 @@ let correctAnswer = null;
 
 people.forEach((person, index) => {
 
-    const card =
-        document.createElement("div");
+    const card = document.createElement("div");
 
-    card.className =
-        "person-card";
+    card.className = "person-card";
 
 
-    /*
-       SPECIAL QUOTE FOR VAISHANVI
-    */
+    /* ======================================
+       VAISHANVI SPECIAL QUOTE
+    ====================================== */
 
-    let personQuote;
+    let currentQuote;
 
     if (person === "Vaishanvi") {
 
-        personQuote =
+        currentQuote =
             "Why were you born beautiful, and why did you grow up even more beautiful? ❤️";
 
     } else {
 
-        personQuote =
+        currentQuote =
             quotes[index % quotes.length];
 
     }
 
+
+    /* ======================================
+       CREATE CARD
+    ====================================== */
 
     card.innerHTML = `
 
@@ -159,7 +161,7 @@ people.forEach((person, index) => {
                 </div>
 
                 <div class="quote">
-                    "${personQuote}"
+                    "${currentQuote}"
                 </div>
 
                 <div class="quote-name">
@@ -173,6 +175,10 @@ people.forEach((person, index) => {
     `;
 
 
+    /* ======================================
+       CLICK PERSON
+    ====================================== */
+
     card.addEventListener("click", () => {
 
         if (
@@ -184,24 +190,19 @@ people.forEach((person, index) => {
         }
 
 
-        selectedCard =
-            card;
+        selectedCard = card;
 
 
         generateMathQuestion();
 
 
-        modal.classList.add(
-            "active"
-        );
+        modal.classList.add("active");
 
 
-        answerInput.value =
-            "";
+        answerInput.value = "";
 
 
-        attemptMessage.textContent =
-            "";
+        attemptMessage.textContent = "";
 
 
         setTimeout(() => {
@@ -213,15 +214,13 @@ people.forEach((person, index) => {
     });
 
 
-    peopleContainer.appendChild(
-        card
-    );
+    peopleContainer.appendChild(card);
 
 });
 
 
 /* ==========================================
-   GENERATE SIMPLE ADDITION / SUBTRACTION
+   GENERATE MATH QUESTION
 ========================================== */
 
 function generateMathQuestion() {
@@ -247,8 +246,7 @@ function generateMathQuestion() {
     const operator =
         operators[
             Math.floor(
-                Math.random() *
-                operators.length
+                Math.random() * operators.length
             )
         ];
 
@@ -261,9 +259,7 @@ function generateMathQuestion() {
         secondNumber;
 
 
-    /*
-       Keep subtraction answers positive
-    */
+    /* Keep subtraction answer positive */
 
     if (
         operator === "-" &&
@@ -273,8 +269,7 @@ function generateMathQuestion() {
         [
             questionFirst,
             questionSecond
-        ] =
-        [
+        ] = [
             questionSecond,
             questionFirst
         ];
@@ -317,6 +312,8 @@ function checkAnswer() {
         );
 
 
+    /* Empty answer */
+
     if (
         answerInput.value.trim() === ""
     ) {
@@ -339,8 +336,7 @@ function checkAnswer() {
     ====================================== */
 
     if (
-        userAnswer ===
-        correctAnswer
+        userAnswer === correctAnswer
     ) {
 
         attemptMessage.textContent =
@@ -358,9 +354,7 @@ function checkAnswer() {
             );
 
 
-            if (
-                selectedCard
-            ) {
+            if (selectedCard) {
 
                 selectedCard.classList.add(
                     "flipped"
